@@ -11,6 +11,7 @@
         </script>
         <title>My Girlfriend is Curious</title>
         
+        
         <meta charset="UTF-8">
         <meta name="description" content="My Girlfriend is Curious">
         <meta name="keywords" content="website, art, computer science, coding, design, video games, music, spotify">
@@ -24,35 +25,33 @@
         
         
         
-        <div class = "spotifyPlayer" style="position: relative; display: flex; flex-direction: row; max-width: 700px; min-width: 450px; font-family: 'Helvetica Neue', sans-serif; background-color: #121212;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">
-            <a href="https://open.spotify.com/user/goofyshnoofy" style="color: white; font-weight: bold; text-decoration: none"><div class = "spotifyStatusIndicator" style="position: absolute; right: 1em; top: 1em; background-color: black;text-align: center; padding: .7vh 1vw; font-size: clamp(10px, 1.5vw, 12px); min-width: 40px;max-width: 80px; border-radius: 10000px;" onMouseOver="this.style.backgroundColor='black'" onMouseOut="this.style.backgroundColor='black'">&nbsp;</div></a>
+        <div class = "spotifyPlayer" style="position: relative; display: flex; flex-direction: row; max-width: 700px; min-width: 320px; font-family: 'Helvetica Neue', sans-serif; background-color: #121212;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">
+            <a href="https://open.spotify.com/user/goofyshnoofy" style="color: white; font-weight: bold; text-decoration: none"><div class = "spotifyStatusIndicator" style="position: absolute; right: 1em; top: 1em; background-color: #121212;text-align: center; padding: .7vh 1vw; font-size: clamp(10px, 1.5vw, 12px); min-width: 40px;max-width: 80px; border-radius: 10000px;" onMouseOver="this.style.backgroundColor='#121212'" onMouseOut="this.style.backgroundColor='#121212'">&nbsp;</div></a>
             
             
-            <div class = "playerImgContainer" style="height: 100%; ">
-                <img class = "trackImg" src = "img/missingAlbum.png" alt = "albumArt" height="100%" style="min-height: 110px; height: 22vh; max-height: 145px; max-width: 300px;">
+            <div class = "playerImgContainer" style="height: 100%; max-height: 130px;">
+                <img class = "trackImg" src = "img/missingAlbum.png" alt = "albumArt" height="100%" style="min-height: 80px;max-height: 130px; height: 22vh; max-width: 300px;">
             </div>
             
             <div class = 'playerControlsContainer' style=" display: flex; flex-direction: column; width: 100%">
                 
                 <div class = "trackInfoContainer" style="display: flex; flex-direction: column; height:65%; max-width: 100%; justify-content: center; padding-left: 2.5%;padding-right: 2.5%">
-                    <div class = "device" style="color: #535353; font-size: clamp(10px,1.5vw,15px);display: flex;align-items: center;"><div class = "deviceName">&nbsp;</div> <img class = "deviceImg" src = "img/blank.png" alt="deviceImage" style="padding-left:1vw;height:2ex;color: #535353"></div>
+                    <div class = "device" style="color: #535353; font-size: clamp(8px,1.5vw,15px);display: flex;align-items: center;"><div class = "deviceName">&nbsp;</div> <img class = "deviceImg" src = "img/blank.png" alt="deviceImage" style="padding-left:1vw;height:2ex;color: #535353"></div>
     
                     <div class = "playerMiddle" style="display: flex; flex-direction: row; align-items: baseline; justify-content: left; width: 100%">
-                        <a href = "" class = "trackName" style="text-decoration:none;font-size:clamp(15px,2vw,35px);text-overflow: ellipsis;white-space: nowrap;overflow: hidden;width: fit-content;max-width:48%;color: white; font-weight: bold;">{-----}</a>
-        
-                        <div class = "trackBreak" style="font-size: clamp(15px,2vw,20px); color: #B3B3B3; padding: 0 10px">&nbsp;</div>
-        
-                        <a href = "" class = "trackContext" style="text-decoration:none; text-overflow: ellipsis;white-space: nowrap;overflow: hidden;width: fit-content;max-width:47%;color: #B3B3B3; font-weight: normal;font-size: clamp(15px,1.5vw,15px)">&nbsp;</a>
+                        <a href = "" class = "trackName" style="text-decoration:none;font-size:clamp(8px,2vw,17px);text-overflow: clip;white-space: nowrap;overflow: hidden;width: fit-content;max-width:23ch;color: white; font-weight: bold;">...</a>
+                        <div class = "trackBreak" style="font-size: clamp(8px,2vw,20px); color: #B3B3B3; padding: 0 5px">&nbsp;</div>
+                        <a href = "" class = "trackContext" style="text-decoration:none; text-overflow: clip;white-space: nowrap;overflow: hidden;width: fit-content;max-width:47%;color: #B3B3B3; font-weight: normal;font-size: clamp(7px,1.5vw,15px)">&nbsp;</a>
                     </div>
                     
                     <div style="display: flex; justify-content: space-between">
                         
-                        <a class = "trackArtist" style="color: #B3B3B3; font-weight: normal; text-decoration: none" href="">&nbsp;</a>
-                        <div style="display: flex; flex-direction: row;">
+                        <a class = "trackArtist" style="font-size:clamp(8px,1.5vw,15px);color: #B3B3B3; font-weight: normal; text-decoration: none" href="">&nbsp;</a>
+                        <div style="display: flex; flex-direction: row; justify-content: center">
                             
                             <img class = "shuffleImg" src = "img/blank.png" alt="deviceImage" style="padding-left:1vw;height:2ex;">
-                            <img class = "repeatImg" src = "img/blank.png" alt="deviceImage" style="padding-left:1vw;height:2ex;">
-                            <div class = "volumeLevel" style="padding-left:1vw;height:2ex;color: #B3B3B3">&nbsp;</div>
+                            <img class = "repeatImg" src = "img/blank.png" alt="deviceImage" style="padding-left:1vw;padding-right:1vw;height:2ex;">
+                            <div class = "volumeLevel" style="margin:0 3px;height:1.8ex;background-color: #121212; width: .5vw; max-width: 4px; min-width: 3px;display: flex;justify-content: flex-end;flex-direction: column;"><div class="volumeFill" style="background-color: #B3B3B3; height:0%"></div></div>
                         </div>
                     
                     </div>
@@ -82,6 +81,7 @@
                     let listenOnText = document.getElementsByClassName("listenOnText")[0]
                     let trackName = document.getElementsByClassName("trackName")[0]
                     let listenOnContainer = document.getElementsByClassName("onSpotifyContainer")[0]
+                    let volBack = document.getElementsByClassName("volumeLevel")[0]
     
     
                     if(!res.playing) {
@@ -93,7 +93,7 @@
                         trackName.innerHTML = "no song available"
                         
                     } else{
-    
+                        volBack.style.backgroundColor = "#535353"
                         onlineStatus.innerHTML = "Online"
                         onlineStatus.style.backgroundColor = "#2E77D0"
                         onlineStatus.onmouseover=function (){this.style.backgroundColor="#235fa9"}
@@ -110,14 +110,15 @@
                         trackName.href = res.track.url
     
                         let trackContext = document.getElementsByClassName("trackContext")[0]
-                        console.log(res.context)
+                        console.log(res.track.context)
     
-                        if(res.context) {
+                        if(res.track.context) {
                             document.getElementsByClassName("trackBreak")[0].innerHTML="-"
                             trackContext.innerHTML = res.track.context.name
                             trackContext.href = res.track.context.url
                             console.log(res)
                         } else{
+                            trackName.style.maxWidth = "80%"
                             trackContext.innerHTML=""
                             document.getElementsByClassName("trackBreak")[0].innerHTML=""
                         }
@@ -154,8 +155,8 @@
                         let trackImg = document.getElementsByClassName("trackImg")[0]
                         trackImg.src = res.track.image
     
-                        let vol = document.getElementsByClassName("volumeLevel")[0]
-                        vol.innerHTML = res.player.vol
+                        let vol = document.getElementsByClassName("volumeFill")[0]
+                        vol.style.height = String(res.player.vol)+"%"
     
                         let shuffle = document.getElementsByClassName("shuffleImg")[0]
                         if(res.player.shuffle === true) {
