@@ -16,11 +16,172 @@
         <meta name="keywords" content="website, art, computer science, coding, design, video games, music, spotify">
         <meta name="author" content="Nick Escobar">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+    
     </head>
     <body>
-    
-        <h1>My Girlfriend is Curious</h1>
         
+        <h1 style="font-family: 'IBM Courier'">My Girlfriend is Curious</h1>
+        
+        
+        
+        <div class = "spotifyPlayer" style="position: relative; display: flex; flex-direction: row; max-width: 700px; min-width: 450px; font-family: 'Helvetica Neue', sans-serif; background-color: #121212;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">
+            <a href="https://open.spotify.com/user/goofyshnoofy" style="color: white; font-weight: bold; text-decoration: none"><div class = "spotifyStatusIndicator" style="position: absolute; right: 1em; top: 1em; background-color: black;text-align: center; padding: .7vh 1vw; font-size: clamp(10px, 1.5vw, 12px); min-width: 40px;max-width: 80px; border-radius: 10000px;" onMouseOver="this.style.backgroundColor='black'" onMouseOut="this.style.backgroundColor='black'">&nbsp;</div></a>
+            
+            
+            <div class = "playerImgContainer" style="height: 100%; ">
+                <img class = "trackImg" src = "img/missingAlbum.png" alt = "albumArt" height="100%" style="min-height: 110px; height: 22vh; max-height: 145px; max-width: 300px;">
+            </div>
+            
+            <div class = 'playerControlsContainer' style=" display: flex; flex-direction: column; width: 100%">
+                
+                <div class = "trackInfoContainer" style="display: flex; flex-direction: column; height:65%; max-width: 100%; justify-content: center; padding-left: 2.5%;padding-right: 2.5%">
+                    <div class = "device" style="color: #535353; font-size: clamp(10px,1.5vw,15px);display: flex;align-items: center;"><div class = "deviceName">&nbsp;</div> <img class = "deviceImg" src = "img/blank.png" alt="deviceImage" style="padding-left:1vw;height:2ex;color: #535353"></div>
+    
+                    <div class = "playerMiddle" style="display: flex; flex-direction: row; align-items: baseline; justify-content: left; width: 100%">
+                        <a href = "" class = "trackName" style="text-decoration:none;font-size:clamp(15px,2vw,35px);text-overflow: ellipsis;white-space: nowrap;overflow: hidden;width: fit-content;max-width:48%;color: white; font-weight: bold;">{-----}</a>
+        
+                        <div class = "trackBreak" style="font-size: clamp(15px,2vw,20px); color: #B3B3B3; padding: 0 10px">&nbsp;</div>
+        
+                        <a href = "" class = "trackContext" style="text-decoration:none; text-overflow: ellipsis;white-space: nowrap;overflow: hidden;width: fit-content;max-width:47%;color: #B3B3B3; font-weight: normal;font-size: clamp(15px,1.5vw,15px)">&nbsp;</a>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between">
+                        
+                        <a class = "trackArtist" style="color: #B3B3B3; font-weight: normal; text-decoration: none" href="">&nbsp;</a>
+                        <div style="display: flex; flex-direction: row;">
+                            
+                            <img class = "shuffleImg" src = "img/blank.png" alt="deviceImage" style="padding-left:1vw;height:2ex;">
+                            <img class = "repeatImg" src = "img/blank.png" alt="deviceImage" style="padding-left:1vw;height:2ex;">
+                            <div class = "volumeLevel" style="padding-left:1vw;height:2ex;color: #B3B3B3">&nbsp;</div>
+                        </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="playerProgressContainer" style="height:10%; background-color: #181818; display: flex; flex-direction: row">
+                    
+                    <div style="width: 90%; height:30%; background-color: #535353; margin-left: auto; margin-right: auto"><div class = "innerProgress" style="width: 1%; height: 100%; background-color: #B3B3B3;"></div></div>
+                </div>
+                
+                <a href = "" class="onSpotifyContainer" style="text-decoration:none;height: 25%; background-color: #181818;text-align: center; color: white; font-weight: bold; display: flex;justify-content: center;align-items: center;" onMouseOver="this.style.backgroundColor='#181818'" onMouseOut="this.style.backgroundColor='#181818'">
+                    <img src="img/Spotify_Icon_RGB_White.png" style="min-height: 21px; height: 1em; padding-right: 2.5%" alt="Spotify Logo"><div class="listenOnText">&nbsp;</div>
+                </a>
+            
+            </div>
+            
+            <script>
+            
+                const currentSongUrl = "http://129.153.40.190:3000/current"
+                
+                fetch(currentSongUrl)
+                .then (data => {return data.json()})
+                .then (res => {
+    
+                    let onlineStatus = document.getElementsByClassName("spotifyStatusIndicator")[0]
+                    let listenOn = document.getElementsByClassName("onSpotifyContainer")[0]
+                    let listenOnText = document.getElementsByClassName("listenOnText")[0]
+                    let trackName = document.getElementsByClassName("trackName")[0]
+                    let listenOnContainer = document.getElementsByClassName("onSpotifyContainer")[0]
+    
+    
+                    if(!res.playing) {
+                        onlineStatus.innerHTML = "Offline"
+                        onlineStatus.style.backgroundColor = "#d01616"
+                        onlineStatus.onmouseover=function (){this.style.backgroundColor="#a21111"}
+                        onlineStatus.onmouseout=function (){this.style.backgroundColor="#d01616"}
+                        listenOnText.innerHTML = "Unable to connect"
+                        trackName.innerHTML = "no song available"
+                        
+                    } else{
+    
+                        onlineStatus.innerHTML = "Online"
+                        onlineStatus.style.backgroundColor = "#2E77D0"
+                        onlineStatus.onmouseover=function (){this.style.backgroundColor="#235fa9"}
+                        onlineStatus.onmouseout=function (){this.style.backgroundColor="#2E77D0"}
+                        
+                        
+                        listenOn.style.backgroundColor = "#1DB954"
+                        listenOnContainer.href = res.track.url
+                        listenOnText.innerHTML = "Listen on Spotify"
+                        listenOnContainer.onmouseover=function (){this.style.backgroundColor="#169d46"}
+                        listenOnContainer.onmouseout=function (){this.style.backgroundColor="#1DB954"}
+                        
+                        trackName.innerHTML=res.track.name
+                        trackName.href = res.track.url
+    
+                        let trackContext = document.getElementsByClassName("trackContext")[0]
+                        console.log(res.context)
+    
+                        if(res.context) {
+                            document.getElementsByClassName("trackBreak")[0].innerHTML="-"
+                            trackContext.innerHTML = res.track.context.name
+                            trackContext.href = res.track.context.url
+                            console.log(res)
+                        } else{
+                            trackContext.innerHTML=""
+                            document.getElementsByClassName("trackBreak")[0].innerHTML=""
+                        }
+    
+                        let deviceImg = document.getElementsByClassName("deviceImg")[0]
+                        console.log(res.device.type)
+                        if(res.device.type==="Smartphone"){
+                            deviceImg.src = "img/phoneIcon.png"
+                        } else if(res.device.type==="Computer"){
+                            deviceImg.src = "img/compIcon.png"
+                        }
+    
+                        let deviceName = document.getElementsByClassName("deviceName")[0]
+                        deviceName.textContent=res.device.name
+    
+                        let artistName = document.getElementsByClassName("trackArtist")[0]
+    
+                        let artists=""
+    
+                        for(let i = 0; i<res.track.artists.names.length; i++){
+                            if(i===0) {
+                                artists = res.track.artists.names[i]
+                            } else{
+                                artists = artists+ ", " + res.track.artists.names[i]
+                            }
+                        }
+    
+                        artistName.innerHTML=artists
+                        artistName.href = res.track.artists.url
+    
+                        let progress = document.getElementsByClassName("innerProgress")[0]
+                        progress.style.width = String(res.player.progress * 100) + "%"
+    
+                        let trackImg = document.getElementsByClassName("trackImg")[0]
+                        trackImg.src = res.track.image
+    
+                        let vol = document.getElementsByClassName("volumeLevel")[0]
+                        vol.innerHTML = res.player.vol
+    
+                        let shuffle = document.getElementsByClassName("shuffleImg")[0]
+                        if(res.player.shuffle === true) {
+                            shuffle.src="img/shuffleOn.png"
+                        } else{
+                            shuffle.src="img/shuffleOff.png"
+                        }
+    
+                        let repeat = document.getElementsByClassName("repeatImg")[0]
+                        if(res.player.repeat === "off") {
+                            repeat.src="img/repeatOff.png"
+                        } else{
+                            repeat.src="img/repeatOn.png"
+                        }
+    
+    
+                        //trackName.href = res.track.url
+                    }
+                    
+                    
+                    
+                    })
+            
+            </script>
+            
+        </div>
+    
     </body>
 </html>
