@@ -106,6 +106,8 @@
                                 .then (data => {return data.json()})
                                 .then (res => {
                             
+                                    console.log(res)
+                                    
                                     let onlineStatus = document.getElementsByClassName("spotifyStatusIndicator")[0]
                                     let listenOn = document.getElementsByClassName("onSpotifyContainer")[0]
                                     let listenOnText = document.getElementsByClassName("listenOnText")[0]
@@ -170,7 +172,7 @@
                                         trackName.innerHTML=res.track.name
                                         trackName.href = res.track.url
                                 
-                                        console.log(res.track.context)
+                                        //console.log(res.track.context)
                                 
                                         if(res.track.context) {
                                             trackBreak.innerHTML="-"
@@ -178,7 +180,7 @@
                                             trackBreak.style.display = "inline"
                                             trackContext.innerHTML = res.track.context.name
                                             trackContext.href = res.track.context.url
-                                            console.log(res)
+                                            //console.log(res)
                                         } else{
                                             trackName.style.maxWidth = "80%"
                                             trackContext.innerHTML=""
@@ -188,7 +190,7 @@
                                         }
                                 
                                 
-                                        console.log(res.device.type)
+                                        //console.log(res.device.type)
                                         if(res.device.type==="Smartphone"){
                                             deviceImg.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/phoneIcon.png"
                                         } else if(res.device.type==="Computer"){

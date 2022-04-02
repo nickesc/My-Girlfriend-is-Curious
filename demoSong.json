@@ -1,0 +1,34 @@
+{
+  "playing": true,
+  "device": {
+    "name": "Batphone",
+    "type": "Smartphone"
+  },
+  "player": {
+    "vol": 100,
+    "shuffle": false,
+    "repeat": "off",
+    "progress": 0.021547743643415624
+  },
+  "track": {
+    "context": {
+      "name": "More Than A Game",
+      "type": "album",
+      "url": "https://open.spotify.com/album/55UhXq8grzHPga0we8mEL3"
+    },
+    "artists": {
+      "names": [
+        "Drake",
+        "Kanye West",
+        "Lil Wayne",
+        "Eminem"
+      ],
+      "url": "https://open.spotify.com/artist/3TVXtAsR1Inumwj472S9r4"
+    },
+    "contentType": "track",
+    "name": "Forever",
+    "image": "https://i.scdn.co/image/ab67616d0000b2737c22c8b9a5cfe27cd9914c4c",
+    "explicit": true,
+    "url": "https://open.spotify.com/track/6HSqyfGnsHYw9MmIpa9zlZ"
+  }
+}

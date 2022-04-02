@@ -1,0 +1,31 @@
+{
+  "playing": true,
+  "device": {
+    "name": "Batcomputer",
+    "type": "Computer"
+  },
+  "player": {
+    "vol": 100,
+    "shuffle": false,
+    "repeat": "off",
+    "progress": 0.28535169024850154
+  },
+  "track": {
+    "context": {
+      "name": "Welcome to Night Vale",
+      "type": "show",
+      "url": "https://open.spotify.com/show/0s6Wc5qf8SIvCtKZNC6N7s"
+    },
+    "artists": {
+      "names": [
+        "Night Vale Presents"
+      ],
+      "url": "https://open.spotify.com/show/0s6Wc5qf8SIvCtKZNC6N7s"
+    },
+    "contentType": "episode",
+    "name": "1 - Pilot",
+    "image": "https://i.scdn.co/image/b9e486b756ad8a7027bdb304ad24fdfa7de28fea",
+    "explicit": false,
+    "url": "https://open.spotify.com/episode/6zs79bz9Nb0lXhoHtGDudJ"
+  }
+}
