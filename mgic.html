@@ -25,8 +25,9 @@
     <body style="overflow-x: hidden; margin: 0">
         
         <spotify style="position: fixed;">
+            <a href="#" class ="expand" style="position:absolute; bottom: 0; right: 0; min-width: 50px; max-width:80px; width: 10vmin;" onclick="document.getElementsByClassName('spotifyPlayer')[0].style.display='flex'"><img src="https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/expand.png" alt="Expand Spotify" style="color: #B3B3B3; width: 100%"></a>
             <div class="spotifyPlayer"
-                 style="position: relative; display: flex; flex-direction: row; width: 100vw; max-width: 700px; min-width: 320px; font-family: 'Helvetica Neue', sans-serif; background-color: #191414;text-overflow: ellipsis;white-space: nowrap;overflow: hidden; ">
+                 style="position: relative; display: none; flex-direction: row; width: 100vw; max-width: 700px; min-width: 320px; font-family: 'Helvetica Neue', sans-serif; background-color: #191414;text-overflow: ellipsis;white-space: nowrap;overflow: hidden; ">
                 <a href="https://open.spotify.com/user/goofyshnoofy"
                    style="color: white; font-weight: bold; text-decoration: none">
                     <div class="spotifyStatusIndicator"
@@ -35,6 +36,7 @@
                          onMouseOut="this.style.backgroundColor='#191414'">&nbsp;
                     </div>
                 </a>
+                <a href="#" class ="collapse" style="filter: drop-shadow(0 0 2px #232323);position:absolute; top: .5vmin; left: .7vmin; min-width: 15px; max-width:20px; width: 5vmin;" onclick="document.getElementsByClassName('spotifyPlayer')[0].style.display='none'"><img src="https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/collapse.png" alt="Collapse Spotify" style="color: #B3B3B3; width: 100%"></a>
                 <div class="playerImgContainer" style="height: 130px;">
                     <img class="trackImg"
                          src="https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/missingAlbum.png"
@@ -79,7 +81,6 @@
                         </div>
                     </div>
                     <div class="playerProgressContainer" style="height:10%; display: flex; flex-direction: row">
-                        
                         <div style="width: 95%; height:30%; background-color: #535353; margin-left: auto; margin-right: auto">
                             <div class="innerProgress"
                                  style="width: 1%; height: 100%; background-color: #B3B3B3;"></div>
@@ -94,7 +95,6 @@
                         <div class="listenOnText">&nbsp;</div>
                     </a>
                 </div>
-                
                 <script>
                     const mediaQuery = window.matchMedia('(min-width: 760px)');
                     let spotify = document.getElementsByTagName("spotify")[0];
@@ -208,10 +208,14 @@
                                             trackBreak.style.display = "none";
                                             trackBreak.style.display = "none";
                                         }
-                                        if (res.device.type === "Smartphone") {
+                                        if (res.device.type === "Smartphone" || res.device.type === "Tablet") {
+                                            deviceImg.style.display = "inline";
                                             deviceImg.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/phoneIcon.png";
                                         } else if (res.device.type === "Computer") {
+                                            deviceImg.style.display = "inline";
                                             deviceImg.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/compIcon.png";
+                                        } else{
+                                            deviceImg.style.display = "none";
                                         }
                                         deviceName.textContent = res.device.name;
                                         let artists = "";
@@ -248,3 +252,4 @@
     
     </body>
 </html>
+
