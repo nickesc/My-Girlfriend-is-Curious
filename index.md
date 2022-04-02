@@ -55,11 +55,12 @@
     }
     mediaQuery.addListener(handleChange);
     handleChange(mediaQuery);
-    const currentSongUrl = "http://129.153.40.190:3000/current";
+    const currentSongUrl = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/demoSong.json";
     function setSong(){
         fetch(currentSongUrl)
                 .then (data => {return data.json()})
                 .then (res => {
+                    console.log(res);
                     let onlineStatus = document.getElementsByClassName("spotifyStatusIndicator")[0];
                     let listenOn = document.getElementsByClassName("onSpotifyContainer")[0];
                     let listenOnText = document.getElementsByClassName("listenOnText")[0];
@@ -114,21 +115,18 @@
                         listenOnContainer.onmouseout=function (){this.style.backgroundColor="#1DB954"};
                         trackName.innerHTML=res.track.name;
                         trackName.href = res.track.url;
-                        console.log(res.track.context);
                         if(res.track.context) {
                             trackBreak.innerHTML="-";
                             trackContext.style.display = "inline";
                             trackBreak.style.display = "inline";
                             trackContext.innerHTML = res.track.context.name;
                             trackContext.href = res.track.context.url;
-                            console.log(res);
                         } else{
                             trackName.style.maxWidth = "80%";
                             trackContext.innerHTML="";
                             trackBreak.style.display = "none";
                             trackBreak.style.display = "none";
                         }
-                        console.log(res.device.type);
                         if(res.device.type==="Smartphone"){
                             deviceImg.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/phoneIcon.png";
                         } else if(res.device.type==="Computer"){
