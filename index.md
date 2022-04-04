@@ -5,7 +5,13 @@
 
 My girlfriend wants to know what I'm listening to, and I don't like Spotify displaying it on their app, so I wrote a small server and HTML tag using [`Spotify's API`](https://developer.spotify.com/documentation/web-api/) and [`thelinmichael/spotify-web-api-node`](https://github.com/thelinmichael/spotify-web-api-node) that will return and display my current listening activity.
 
-The goal with the frontend was to create an HTML tag that could be copied dropped into any project, as it was with scripting and styling inline. I wanted something that I could transplant to any webpage I wanted, including (as you can see in the [demo](https://nickesc.github.io/My-Girlfriend-is-Curious/)) Markdown without *too* much trouble. It struggles with images, especially the album cover width, but works otherwise.
+> The player when I'm listening to a track on Spotify:
+> ![spotifyPlayer](img/demoTrackImg.png)
+>
+> The player when I'm offline on Spotify:
+> ![offlinePlayer](img/demoOfflineImg.png)
+
+The goal with the frontend was to create an HTML tag that could be copied dropped into any project, as it was with scripting and styling inline. I wanted something that I could transplant to any webpage I wanted, including (as you can see in the [demo](https://nickesc.github.io/My-Girlfriend-is-Curious/)) Markdown without *too* much trouble. It struggles with images, especially the album cover width, but works otherwise. The demo also, at the moment, only displays dummy text. The server hasn't been set up to send traffic over HTTPS yet, so it isn't able to connect with the frontend.
 
 The main thing to consider when dropping it into a site is that it'll make the bottom 100 pixels of your page invisible on mobile when it's expanded, so build with that in mind. And there can only be one of these at a time on your site, more will break any additional players. Honestly, I'm not sure where I'll use this, other than maybe my website, but it was a lot of fun to make.
 
@@ -18,9 +24,9 @@ The player is hidden by default, but on expanding it you can see it shows my cur
 </style>
 
 <spotify style="position: fixed;">
-    <a href="#" class ="expand" style="position:absolute; bottom: 0; right: 0; min-width: 50px; max-width:80px; width: 10vmin;" onclick="document.getElementsByClassName('spotifyPlayer')[0].style.display='flex'"><img src="https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/expand.png" alt="Expand Spotify" style="color: #B3B3B3; width: 100%"></a>
+    <a href="#" class ="expand" style="position:absolute; bottom: 0; right: max(1vw,15px); min-width: 50px; max-width:80px; width: 10vmin;" onclick="document.getElementsByClassName('spotifyPlayer')[0].style.display='flex'"><img src="https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/expand.png" alt="Expand Spotify" style="color: #B3B3B3; max-height: 80px"></a>
     <div class="spotifyPlayer"
-         style="position: relative; display: flex; flex-direction: row; width: 100vw; max-width: 700px; min-width: 320px; font-family: 'Helvetica Neue', sans-serif; background-color: #191414;text-overflow: ellipsis;white-space: nowrap;overflow: hidden; ">
+         style="position: relative; display: none; flex-direction: row; width: 100vw; max-width: 700px; min-width: 320px; font-family: 'Helvetica Neue', sans-serif; background-color: #191414;text-overflow: ellipsis;white-space: nowrap;overflow: hidden; ">
         <a href="https://open.spotify.com/user/goofyshnoofy"
            style="color: white; font-weight: bold; text-decoration: none">
             <div class="spotifyStatusIndicator"
@@ -29,7 +35,7 @@ The player is hidden by default, but on expanding it you can see it shows my cur
                  onMouseOut="this.style.backgroundColor='#191414'">&nbsp;
             </div>
         </a>
-        <a href="#" class ="collapse" style="filter: drop-shadow(0 0 2px black);position:absolute; top: .5vmin; left: .7vmin; min-width: 15px; max-width:20px; width: 5vmin;" onclick="document.getElementsByClassName('spotifyPlayer')[0].style.display='none'"><img src="https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/collapse.png" alt="Collapse Spotify" style="color: #B3B3B3; width: 100%"></a>
+        <a href="#" class ="collapse" style="filter: drop-shadow(0 0 2px #232323);position:absolute; top: .5vmin; left: .7vmin; min-width: 15px; max-width:20px; width: 5vmin;" onclick="document.getElementsByClassName('spotifyPlayer')[0].style.display='none'"><img src="https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/collapse.png" alt="Collapse Spotify" style="color: #B3B3B3; width: 100%"></a>
         <div class="playerImgContainer" style="height: 130px;">
             <img class="trackImg"
                  src="https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/missingAlbum.png"
@@ -48,16 +54,16 @@ The player is hidden by default, but on expanding it you can see it shows my cur
                 <div class="playerMiddle"
                      style="display: flex; flex-direction: row; align-items: baseline; justify-content: left; width: 100%; margin: .3vh 0">
                     <a href="" class="trackName"
-                       style="text-decoration:none;font-size:clamp(8px,2vw,17px);text-overflow: clip;white-space: nowrap;overflow: hidden;width: fit-content;max-width:23ch;color: white; font-weight: bold;">...</a>
+                       style="text-decoration:none;font-size:clamp(9px,2vw,17px);text-overflow: clip;white-space: nowrap;overflow: hidden;width: fit-content;max-width:23ch;color: white; font-weight: bold;">...</a>
                     <div class="trackBreak"
-                         style="font-size: clamp(8px,2vw,20px); color: #B3B3B3; padding: 0 5px">&nbsp;
+                         style="font-size: clamp(8px,2vw,20px); color: #B3B3B3; padding: 0 min(3px,1vw)">&nbsp;
                     </div>
                     <a href="" class="trackContext"
-                       style="text-decoration:none; text-overflow: clip;white-space: nowrap;overflow: hidden;width: fit-content;max-width:47%;color: #B3B3B3; font-weight: normal;font-size: clamp(7px,1.5vw,15px)">&nbsp;</a>
+                       style="font-size: clamp(7px,1.5vw,15px);text-decoration:none; text-overflow: clip;white-space: nowrap;overflow: hidden;width: fit-content;max-width:25ch;color: #B3B3B3; font-weight: normal;">&nbsp;</a>
                 </div>
                 <div style="display: flex; justify-content: space-between">
                     <a class="trackArtist"
-                       style="font-size:clamp(8px,1.5vw,15px);color: #B3B3B3; font-weight: normal; text-decoration: none"
+                       style="font-size:clamp(8px,1.5vw,15px);color: #B3B3B3; font-weight: normal; text-decoration: none; text-overflow: clip;white-space: nowrap;overflow: hidden;width: fit-content;max-width:50ch;"
                        href="">&nbsp;</a>
                     <div style="display: flex; flex-direction: row; justify-content: center; font-size: 15px">
                         <img class="shuffleImg"
@@ -67,8 +73,8 @@ The player is hidden by default, but on expanding it you can see it shows my cur
                              src="https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/blank.png"
                              alt="repeatImage" style="padding-left:1vw;padding-right:1vw;height:2ex;">
                         <div class="volumeLevel"
-                             style="margin:0 3px;height:1.8ex;background-color: #191414; width: .5vw; max-width: 4px; min-width: 3px;display: flex;justify-content: flex-end;flex-direction: column;">
-                            <div class="volumeFill" style="background-color: #B3B3B3; height:0%"></div>
+                             style="margin:auto 3px;min-width:3ex; width:6vw; max-width: 7ex; background-color: #191414; height: .5vw; max-height: 4px; min-height: 2px;">
+                            <div class="volumeFill" style="background-color: #B3B3B3; width:0%; height: 100%"></div>
                         </div>
                     </div>
                 </div>
@@ -84,16 +90,18 @@ The player is hidden by default, but on expanding it you can see it shows my cur
                onMouseOver="this.style.backgroundColor='#191414'"
                onMouseOut="this.style.backgroundColor='#191414'">
                 <img src="https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/Spotify_Icon_RGB_White.png"
-                     style="min-height: 21px; height: 1em; padding-right: 2.5%" alt="Spotify Logo">
-                <div class="listenOnText">&nbsp;</div>
+                     style="min-height: 21px; height: 1em; margin: 10px" alt="Spotify Logo">
+                <div class="listenOnText" style="font-weight: bold">&nbsp;</div>
             </a>
         </div>
         <script>
+            const timer = 5;
             const mediaQuery = window.matchMedia('(min-width: 760px)');
             let spotify = document.getElementsByTagName("spotify")[0];
             let trackImg = document.getElementsByClassName("trackImg")[0];
             let trackImgContainer = document.getElementsByClassName("playerImgContainer")[0];
             let listenOnContainer = document.getElementsByClassName("onSpotifyContainer")[0];
+            let expand = document.getElementsByClassName("expand")[0];
             function handleChange(e) {
                 if (mediaQuery.matches) {
                     spotify.style.right = "5%";
@@ -147,11 +155,11 @@ The player is hidden by default, but on expanding it you can see it shows my cur
                                 onlineStatus.style.backgroundColor = "#d01616";
                                 onlineStatus.onmouseover = function () {
                                     this.style.backgroundColor = "#a21111";
-                                }
+                                };
                                 onlineStatus.onmouseout = function () {
                                     this.style.backgroundColor = "#d01616";
-                                }
-                                listenOnText.innerHTML = "Unable to connect";
+                                };
+                                listenOnText.innerHTML = "UNABLE TO CONNECT";
                                 trackName.innerHTML = "no track available";
                                 trackName.removeAttribute("href");
                                 trackContext.style.display = "none";
@@ -166,10 +174,10 @@ The player is hidden by default, but on expanding it you can see it shows my cur
                                 listenOnContainer.style.backgroundColor = "#191414";
                                 listenOnContainer.onmouseover = function () {
                                     this.style.backgroundColor = "#191414";
-                                }
+                                };
                                 listenOnContainer.onmouseout = function () {
                                     this.style.backgroundColor = "#191414";
-                                }
+                                };
                                 trackImg.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/missingAlbum.png";
                             } else {
                                 artistName.style.display = "inline";
@@ -183,19 +191,19 @@ The player is hidden by default, but on expanding it you can see it shows my cur
                                 onlineStatus.style.backgroundColor = "#2E77D0";
                                 onlineStatus.onmouseover = function () {
                                     this.style.backgroundColor = "#235fa9";
-                                }
+                                };
                                 onlineStatus.onmouseout = function () {
                                     this.style.backgroundColor = "#2E77D0";
-                                }
+                                };
                                 listenOn.style.backgroundColor = "#1DB954";
                                 listenOnContainer.href = res.track.url;
-                                listenOnText.innerHTML = "Listen on Spotify";
+                                listenOnText.innerHTML = "LISTEN ON SPOTIFY";
                                 listenOnContainer.onmouseover = function () {
                                     this.style.backgroundColor = "#169d46";
-                                }
+                                };
                                 listenOnContainer.onmouseout = function () {
                                     this.style.backgroundColor = "#1DB954";
-                                }
+                                };
                                 trackName.innerHTML = res.track.name;
                                 trackName.href = res.track.url;
                                 if (res.track.context) {
@@ -232,7 +240,7 @@ The player is hidden by default, but on expanding it you can see it shows my cur
                                 artistName.href = res.track.artists.url;
                                 progress.style.width = String(res.player.progress * 100) + "%";
                                 trackImg.src = res.track.image;
-                                vol.style.height = String(res.player.vol) + "%";
+                                vol.style.width = String(res.player.vol) + "%";
                                 if (res.player.shuffle === true) {
                                     shuffle.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/shuffleOn.png";
                                 } else {
@@ -244,7 +252,7 @@ The player is hidden by default, but on expanding it you can see it shows my cur
                                     repeat.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/repeatOn.png";
                                 }
                             }
-                            setTimeout(setSong, 5000);
+                            setTimeout(setSong, timer * 1000);
                         });
             }
             setSong()

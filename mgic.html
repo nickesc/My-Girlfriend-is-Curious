@@ -25,7 +25,7 @@
     <body style="overflow-x: hidden; margin: 0">
         
         <spotify style="position: fixed;">
-            <a href="#" class ="expand" style="position:absolute; bottom: 0; right: 0; min-width: 50px; max-width:80px; width: 10vmin;" onclick="document.getElementsByClassName('spotifyPlayer')[0].style.display='flex'"><img src="https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/expand.png" alt="Expand Spotify" style="color: #B3B3B3; width: 100%"></a>
+            <a href="#" class ="expand" style="position:absolute; bottom: 0; right: max(1vw,15px); min-width: 50px; max-width:80px; width: 10vmin;" onclick="document.getElementsByClassName('spotifyPlayer')[0].style.display='flex'"><img src="https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/expand.png" alt="Expand Spotify" style="color: #B3B3B3; max-height: 80px"></a>
             <div class="spotifyPlayer"
                  style="position: relative; display: none; flex-direction: row; width: 100vw; max-width: 700px; min-width: 320px; font-family: 'Helvetica Neue', sans-serif; background-color: #191414;text-overflow: ellipsis;white-space: nowrap;overflow: hidden; ">
                 <a href="https://open.spotify.com/user/goofyshnoofy"
@@ -55,16 +55,16 @@
                         <div class="playerMiddle"
                              style="display: flex; flex-direction: row; align-items: baseline; justify-content: left; width: 100%; margin: .3vh 0">
                             <a href="" class="trackName"
-                               style="text-decoration:none;font-size:clamp(8px,2vw,17px);text-overflow: clip;white-space: nowrap;overflow: hidden;width: fit-content;max-width:23ch;color: white; font-weight: bold;">...</a>
+                               style="text-decoration:none;font-size:clamp(9px,2vw,17px);text-overflow: clip;white-space: nowrap;overflow: hidden;width: fit-content;max-width:23ch;color: white; font-weight: bold;">...</a>
                             <div class="trackBreak"
-                                 style="font-size: clamp(8px,2vw,20px); color: #B3B3B3; padding: 0 5px">&nbsp;
+                                 style="font-size: clamp(8px,2vw,20px); color: #B3B3B3; padding: 0 min(3px,1vw)">&nbsp;
                             </div>
                             <a href="" class="trackContext"
-                               style="text-decoration:none; text-overflow: clip;white-space: nowrap;overflow: hidden;width: fit-content;max-width:47%;color: #B3B3B3; font-weight: normal;font-size: clamp(7px,1.5vw,15px)">&nbsp;</a>
+                               style="font-size: clamp(7px,1.5vw,15px);text-decoration:none; text-overflow: clip;white-space: nowrap;overflow: hidden;width: fit-content;max-width:25ch;color: #B3B3B3; font-weight: normal;">&nbsp;</a>
                         </div>
                         <div style="display: flex; justify-content: space-between">
                             <a class="trackArtist"
-                               style="font-size:clamp(8px,1.5vw,15px);color: #B3B3B3; font-weight: normal; text-decoration: none"
+                               style="font-size:clamp(8px,1.5vw,15px);color: #B3B3B3; font-weight: normal; text-decoration: none; text-overflow: clip;white-space: nowrap;overflow: hidden;width: fit-content;max-width:50ch;"
                                href="">&nbsp;</a>
                             <div style="display: flex; flex-direction: row; justify-content: center; font-size: 15px">
                                 <img class="shuffleImg"
@@ -74,8 +74,8 @@
                                      src="https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/blank.png"
                                      alt="repeatImage" style="padding-left:1vw;padding-right:1vw;height:2ex;">
                                 <div class="volumeLevel"
-                                     style="margin:0 3px;height:1.8ex;background-color: #191414; width: .5vw; max-width: 4px; min-width: 3px;display: flex;justify-content: flex-end;flex-direction: column;">
-                                    <div class="volumeFill" style="background-color: #B3B3B3; height:0%"></div>
+                                     style="margin:auto 3px;min-width:3ex; width:6vw; max-width: 7ex; background-color: #191414; height: .5vw; max-height: 4px; min-height: 2px;">
+                                    <div class="volumeFill" style="background-color: #B3B3B3; width:0%; height: 100%"></div>
                                 </div>
                             </div>
                         </div>
@@ -91,16 +91,18 @@
                        onMouseOver="this.style.backgroundColor='#191414'"
                        onMouseOut="this.style.backgroundColor='#191414'">
                         <img src="https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/Spotify_Icon_RGB_White.png"
-                             style="min-height: 21px; height: 1em; padding-right: 2.5%" alt="Spotify Logo">
-                        <div class="listenOnText">&nbsp;</div>
+                             style="min-height: 21px; height: 1em; margin: 10px" alt="Spotify Logo">
+                        <div class="listenOnText" style="font-weight: bold">&nbsp;</div>
                     </a>
                 </div>
                 <script>
+                    const timer = 5
                     const mediaQuery = window.matchMedia('(min-width: 760px)');
                     let spotify = document.getElementsByTagName("spotify")[0];
                     let trackImg = document.getElementsByClassName("trackImg")[0];
                     let trackImgContainer = document.getElementsByClassName("playerImgContainer")[0];
                     let listenOnContainer = document.getElementsByClassName("onSpotifyContainer")[0];
+                    let expand = document.getElementsByClassName("expand")[0];
                     function handleChange(e) {
                         if (mediaQuery.matches) {
                             spotify.style.right = "5%";
@@ -149,7 +151,7 @@
                                         onlineStatus.onmouseout = function () {
                                             this.style.backgroundColor = "#d01616";
                                         }
-                                        listenOnText.innerHTML = "Unable to connect";
+                                        listenOnText.innerHTML = "UNABLE TO CONNECT";
                                         trackName.innerHTML = "no track available";
                                         trackName.removeAttribute("href");
                                         trackContext.style.display = "none";
@@ -187,7 +189,7 @@
                                         }
                                         listenOn.style.backgroundColor = "#1DB954";
                                         listenOnContainer.href = res.track.url;
-                                        listenOnText.innerHTML = "Listen on Spotify";
+                                        listenOnText.innerHTML = "LISTEN ON SPOTIFY";
                                         listenOnContainer.onmouseover = function () {
                                             this.style.backgroundColor = "#169d46";
                                         }
@@ -230,7 +232,7 @@
                                         artistName.href = res.track.artists.url;
                                         progress.style.width = String(res.player.progress * 100) + "%";
                                         trackImg.src = res.track.image;
-                                        vol.style.height = String(res.player.vol) + "%";
+                                        vol.style.width = String(res.player.vol) + "%";
                                         if (res.player.shuffle === true) {
                                             shuffle.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/shuffleOn.png";
                                         } else {
@@ -242,7 +244,7 @@
                                             repeat.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/repeatOn.png";
                                         }
                                     }
-                                    setTimeout(setSong, 5000);
+                                    setTimeout(setSong, timer * 1000);
                                 });
                     }
                     setSong()
@@ -252,4 +254,3 @@
     
     </body>
 </html>
-
