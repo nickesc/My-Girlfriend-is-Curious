@@ -151,6 +151,7 @@ The player is hidden by default, but on expanding it you can see it shows my cur
                                 this.style.backgroundColor = "#d01616";
                             }
                             listenOnText.innerHTML = "UNABLE TO CONNECT";
+                            listenOnContainer.removeAttribute("href");
                             trackName.innerHTML = "no track available";
                             trackName.removeAttribute("href");
                             trackContext.style.display = "none";
