@@ -120,7 +120,7 @@
                     }
                     mediaQuery.addListener(handleChange);
                     handleChange(mediaQuery);
-                    const currentSongUrl = "http://129.153.40.190:3000/current";
+                    const currentSongUrl = "https://mgic-server.herokuapp.com/current";
                     function setSong() {
                         fetch(currentSongUrl)
                                 .then(data => {
