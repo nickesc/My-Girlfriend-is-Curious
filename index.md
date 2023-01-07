@@ -3,7 +3,7 @@
 
 ###### By [N. Escobar](https://nickesc.github.io)/[nickesc](https://nickesc.com)
 
-See the demo of the widget [here](https://nickesc.github.io/My-Girlfriend-is-Curious/)!
+> See the demo of the widget [here](https://nickesc.github.io/My-Girlfriend-is-Curious/)!
 
 My girlfriend wants to know what I'm listening to, and I don't like Spotify displaying it on their app, so I wrote a small server and HTML tag using [`Spotify's API`](https://developer.spotify.com/documentation/web-api/) and [`thelinmichael/spotify-web-api-node`](https://github.com/thelinmichael/spotify-web-api-node) that will return and display my current listening activity.
 
