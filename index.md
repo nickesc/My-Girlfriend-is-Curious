@@ -1,3 +1,9 @@
+> This project's current status is:  ***Broken, fix incoming eventually***
+> 
+> Per a Heroku [blog post](https://blog.heroku.com/next-chapter): *"Starting November 28, 2022, we plan to stop offering free product plans and plan to start shutting down free dynos and data services"*
+> 
+> As this project relied upon a free Heroku dyno running a Node.JS server for the backend, it went down in November 2022, and for now I have not been able to find an alternate host. This will change when I have the time or money to fix it.
+
 # My Girlfriend is Curious
 ### —about what I listen to on Spotify!
 
