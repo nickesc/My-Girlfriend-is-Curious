@@ -1,18 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8PBQNWMVB"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            
-            gtag('js', new Date());
-            
-            gtag('config', 'G-M8PBQNWMVB');
-        </script>
         <title>My Girlfriend is Curious</title>
         <meta charset="UTF-8">
         <meta name="description" content="My Girlfriend is Curious">
@@ -20,10 +8,10 @@
         <meta name="author" content="Nick Escobar">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    
-    
+
+
     <body style="overflow-x: hidden; margin: 0">
-        
+
         <spotify style="position: fixed;">
             <a href="#" class ="expand" style="position:absolute; bottom: 0; right: max(1vw,15px); min-width: 50px; max-width:80px; width: 10vmin;" onclick="document.getElementsByClassName('spotifyPlayer')[0].style.display='flex'"><img src="https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/expand.png" alt="Expand Spotify" style="color: #B3B3B3; max-height: 80px"></a>
             <div class="spotifyPlayer"
@@ -120,7 +108,7 @@
                     }
                     mediaQuery.addListener(handleChange);
                     handleChange(mediaQuery);
-                    const currentSongUrl = "https://mgic-server.herokuapp.com/current";
+                    const currentSongUrl = "https://mgic.onrender.com/current";
                     function setSong() {
                         fetch(currentSongUrl)
                                 .then(data => {
@@ -252,7 +240,7 @@
                 </script>
             </div>
         </spotify>
-    
+
     </body>
 </html>
 

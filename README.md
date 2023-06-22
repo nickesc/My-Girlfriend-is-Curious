@@ -1,8 +1,8 @@
-> This project's current status is:  ***Broken, fix incoming eventually***
+> This project's current status is:  ***~~Broken~~ Fixed! Now deployed on [Render](https://render.com/)!***
 > 
 > Per a Heroku [blog post](https://blog.heroku.com/next-chapter): *"Starting November 28, 2022, we plan to stop offering free product plans and plan to start shutting down free dynos and data services"*
 > 
-> As this project relied upon a free Heroku dyno running a Node.JS server for the backend, it went down in November 2022, and for now I have not been able to find an alternate host. This will change when I have the time or money to fix it.
+> Initially this project relied upon a free Heroku dyno. When they stopped offering that service in November 2022, the server went down for a while – but in Jun 2023, I migrated the server to Render's free Web Service product.
 
 # My Girlfriend is Curious
 ### —about what I listen to on Spotify!
@@ -19,7 +19,7 @@ My girlfriend wants to know what I'm listening to, and I don't like Spotify disp
 > The player when I'm offline on Spotify:
 > ![offlinePlayer](img/demoOfflineImg.png)
 
-The goal with the frontend was to create an HTML tag that could be copied dropped into any project, as it was with scripting and styling inline. I wanted something that I could transplant to any webpage I wanted, including (as you can see in the [demo](https://nickesc.github.io/My-Girlfriend-is-Curious/)) Markdown without *too* much trouble. It struggles with images, especially the album cover width, and with some of the spacing, but works otherwise. This demo also, at the moment, only displays dummy data. The server it was housed on was shut down when Heroku removed their free tier, and I don't currently have an alternative so it isn't able to connect with the frontend.
+The goal with the frontend was to create an HTML tag that could be copied dropped into any project, as it was with scripting and styling inline. I wanted something that I could transplant to any webpage I wanted, including (as you can see in the [demo](https://nickesc.github.io/My-Girlfriend-is-Curious/)) Markdown without *too* much trouble. In Markdown it struggles with images, especially the album cover width, and with some of the spacing, but works otherwise.
 
 The main thing to consider when dropping it into a site is that it'll make the bottom 100 pixels of your page invisible on mobile when it's expanded, so build with that in mind. And there can only be one of these at a time on your site, more will break any additional players. Honestly, I'm not sure where I'll use this, other than maybe my website, but it was a lot of fun to make.
 

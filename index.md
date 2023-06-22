@@ -1,8 +1,8 @@
-> This project's current status is:  ***Broken, fix incoming eventually***
+> This project's current status is:  ***~~Broken~~ Fixed! Now deployed on [Render](https://render.com/)!***
 > 
 > Per a Heroku [blog post](https://blog.heroku.com/next-chapter): *"Starting November 28, 2022, we plan to stop offering free product plans and plan to start shutting down free dynos and data services"*
 > 
-> As this project relied upon a free Heroku dyno running a Node.JS server for the backend, it went down in November 2022, and for now I have not been able to find an alternate host. This will change when I have the time or money to fix it.
+> Initially this project relied upon a free Heroku dyno. When they stopped offering that service in November 2022, the server went down for a while – but in Jun 2023, I migrated the server to Render's free Web Service product.
 
 # My Girlfriend is Curious
 ### —about what I listen to on Spotify!
@@ -19,7 +19,7 @@ My girlfriend wants to know what I'm listening to, and I don't like Spotify disp
 > The player when I'm offline on Spotify:
 > ![offlinePlayer](img/demoOfflineImg.png)
 
-The goal with the frontend was to create an HTML tag that could be copied dropped into any project, as it was with scripting and styling inline. I wanted something that I could transplant to any webpage I wanted, including (as you can see in the [demo](https://nickesc.github.io/My-Girlfriend-is-Curious/)) Markdown without *too* much trouble. It struggles with images, especially the album cover width, and with some of the spacing, but works otherwise. This demo also, at the moment, only displays dummy data. The server it was housed on was shut down when Heroku removed their free tier, and I don't currently have an alternative so it isn't able to connect with the frontend.
+The goal with the frontend was to create an HTML tag that could be copied dropped into any project, as it was with scripting and styling inline. I wanted something that I could transplant to any webpage I wanted, including (as you can see in the [demo](https://nickesc.github.io/My-Girlfriend-is-Curious/)) Markdown without *too* much trouble. In Markdown it struggles with images, especially the album cover width, and with some of the spacing, but works otherwise.
 
 The main thing to consider when dropping it into a site is that it'll make the bottom 100 pixels of your page invisible on mobile when it's expanded, so build with that in mind. And there can only be one of these at a time on your site, more will break any additional players. Honestly, I'm not sure where I'll use this, other than maybe my website, but it was a lot of fun to make.
 
@@ -103,7 +103,7 @@ The player is hidden by default, but on expanding it you can see it shows my cur
             </a>
         </div>
         <script>
-            const timer = 5;
+            const timer = 5
             const mediaQuery = window.matchMedia('(min-width: 760px)');
             let spotify = document.getElementsByTagName("spotify")[0];
             let trackImg = document.getElementsByClassName("trackImg")[0];
@@ -127,142 +127,133 @@ The player is hidden by default, but on expanding it you can see it shows my cur
             }
             mediaQuery.addListener(handleChange);
             handleChange(mediaQuery);
-            let x = 0;
-            let currentSongUrl = "";
-            function setSong(){
-                if(x===0){
-                    currentSongUrl = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/demoSong.json"
-                } else if(x===1){
-                    currentSongUrl = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/demoPodcast.json"
-                } else if(x===2){
-                    currentSongUrl = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/demoOffline.json"
-                }
-                x++; if(x>2){x=0}
+            const currentSongUrl = "https://mgic.onrender.com/current";
+            function setSong() {
                 fetch(currentSongUrl)
-                        .then(data => {
-                            return data.json();
-                        })
-                        .then(res => {
-                            console.log(res);
-                            let onlineStatus = document.getElementsByClassName("spotifyStatusIndicator")[0];
-                            let listenOn = document.getElementsByClassName("onSpotifyContainer")[0];
-                            let listenOnText = document.getElementsByClassName("listenOnText")[0];
-                            let trackName = document.getElementsByClassName("trackName")[0];
-                            let volBack = document.getElementsByClassName("volumeLevel")[0];
-                            let trackContext = document.getElementsByClassName("trackContext")[0];
-                            let trackBreak = document.getElementsByClassName("trackBreak")[0];
-                            let deviceImg = document.getElementsByClassName("deviceImg")[0];
-                            let deviceName = document.getElementsByClassName("deviceName")[0];
-                            let artistName = document.getElementsByClassName("trackArtist")[0];
-                            let progress = document.getElementsByClassName("innerProgress")[0];
-                            let vol = document.getElementsByClassName("volumeFill")[0];
-                            let shuffle = document.getElementsByClassName("shuffleImg")[0];
-                            let repeat = document.getElementsByClassName("repeatImg")[0];
-                            if (!res.playing) {
-                                onlineStatus.innerHTML = "Offline";
-                                onlineStatus.style.backgroundColor = "#d01616";
-                                onlineStatus.onmouseover = function () {
-                                    this.style.backgroundColor = "#a21111";
-                                };
-                                onlineStatus.onmouseout = function () {
-                                    this.style.backgroundColor = "#d01616";
-                                };
-                                listenOnText.innerHTML = "UNABLE TO CONNECT";
-                                listenOnContainer.removeAttribute("href");
-                                trackName.innerHTML = "no track available";
-                                trackName.removeAttribute("href");
-                                trackContext.style.display = "none";
-                                trackBreak.style.display = "none";
-                                artistName.style.display = "none";
-                                deviceName.style.display = "none";
-                                deviceImg.style.display = "none";
-                                shuffle.style.display = "none";
-                                volBack.style.display = "none";
-                                repeat.style.display = "none";
-                                progress.style.width = "1%";
-                                listenOnContainer.style.backgroundColor = "#191414";
-                                listenOnContainer.onmouseover = function () {
-                                    this.style.backgroundColor = "#191414";
-                                };
-                                listenOnContainer.onmouseout = function () {
-                                    this.style.backgroundColor = "#191414";
-                                };
-                                trackImg.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/missingAlbum.png";
+                    .then(data => {
+                        return data.json();
+                    })
+                    .then(res => {
+                        console.log(res);
+                        let onlineStatus = document.getElementsByClassName("spotifyStatusIndicator")[0];
+                        let listenOn = document.getElementsByClassName("onSpotifyContainer")[0];
+                        let listenOnText = document.getElementsByClassName("listenOnText")[0];
+                        let trackName = document.getElementsByClassName("trackName")[0];
+                        let volBack = document.getElementsByClassName("volumeLevel")[0];
+                        let trackContext = document.getElementsByClassName("trackContext")[0];
+                        let trackBreak = document.getElementsByClassName("trackBreak")[0];
+                        let deviceImg = document.getElementsByClassName("deviceImg")[0];
+                        let deviceName = document.getElementsByClassName("deviceName")[0];
+                        let artistName = document.getElementsByClassName("trackArtist")[0];
+                        let progress = document.getElementsByClassName("innerProgress")[0];
+                        let vol = document.getElementsByClassName("volumeFill")[0];
+                        let shuffle = document.getElementsByClassName("shuffleImg")[0];
+                        let repeat = document.getElementsByClassName("repeatImg")[0];
+                        if (!res.playing) {
+                            onlineStatus.innerHTML = "Offline";
+                            onlineStatus.style.backgroundColor = "#d01616";
+                            onlineStatus.onmouseover = function () {
+                                this.style.backgroundColor = "#a21111";
+                            }
+                            onlineStatus.onmouseout = function () {
+                                this.style.backgroundColor = "#d01616";
+                            }
+                            listenOnText.innerHTML = "UNABLE TO CONNECT";
+                            listenOnContainer.removeAttribute("href");
+                            trackName.innerHTML = "no track available";
+                            trackName.removeAttribute("href");
+                            trackContext.style.display = "none";
+                            trackBreak.style.display = "none";
+                            artistName.style.display = "none";
+                            deviceName.style.display = "none";
+                            deviceImg.style.display = "none";
+                            shuffle.style.display = "none";
+                            volBack.style.display = "none";
+                            repeat.style.display = "none";
+                            progress.style.width = "1%";
+                            listenOnContainer.style.backgroundColor = "#191414";
+                            listenOnContainer.onmouseover = function () {
+                                this.style.backgroundColor = "#191414";
+                            }
+                            listenOnContainer.onmouseout = function () {
+                                this.style.backgroundColor = "#191414";
+                            }
+                            trackImg.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/missingAlbum.png";
+                        } else {
+                            artistName.style.display = "inline";
+                            deviceName.style.display = "inline";
+                            deviceImg.style.display = "inline";
+                            shuffle.style.display = "inline";
+                            volBack.style.display = "inline";
+                            repeat.style.display = "inline";
+                            volBack.style.backgroundColor = "#535353";
+                            onlineStatus.innerHTML = "Online";
+                            onlineStatus.style.backgroundColor = "#2E77D0";
+                            onlineStatus.onmouseover = function () {
+                                this.style.backgroundColor = "#235fa9";
+                            }
+                            onlineStatus.onmouseout = function () {
+                                this.style.backgroundColor = "#2E77D0";
+                            }
+                            listenOn.style.backgroundColor = "#1DB954";
+                            listenOnContainer.href = res.track.url;
+                            listenOnText.innerHTML = "LISTEN ON SPOTIFY";
+                            listenOnContainer.onmouseover = function () {
+                                this.style.backgroundColor = "#169d46";
+                            }
+                            listenOnContainer.onmouseout = function () {
+                                this.style.backgroundColor = "#1DB954";
+                            }
+                            trackName.innerHTML = res.track.name;
+                            trackName.href = res.track.url;
+                            if (res.track.context) {
+                                trackBreak.innerHTML = "-";
+                                trackContext.style.display = "inline";
+                                trackBreak.style.display = "inline";
+                                trackContext.innerHTML = res.track.context.name;
+                                trackContext.href = res.track.context.url;
                             } else {
-                                artistName.style.display = "inline";
-                                deviceName.style.display = "inline";
+                                trackName.style.maxWidth = "80%";
+                                trackContext.innerHTML = "";
+                                trackBreak.style.display = "none";
+                                trackBreak.style.display = "none";
+                            }
+                            if (res.device.type === "Smartphone" || res.device.type === "Tablet") {
                                 deviceImg.style.display = "inline";
-                                shuffle.style.display = "inline";
-                                volBack.style.display = "inline";
-                                repeat.style.display = "inline";
-                                volBack.style.backgroundColor = "#535353";
-                                onlineStatus.innerHTML = "Online";
-                                onlineStatus.style.backgroundColor = "#2E77D0";
-                                onlineStatus.onmouseover = function () {
-                                    this.style.backgroundColor = "#235fa9";
-                                };
-                                onlineStatus.onmouseout = function () {
-                                    this.style.backgroundColor = "#2E77D0";
-                                };
-                                listenOn.style.backgroundColor = "#1DB954";
-                                listenOnContainer.href = res.track.url;
-                                listenOnText.innerHTML = "LISTEN ON SPOTIFY";
-                                listenOnContainer.onmouseover = function () {
-                                    this.style.backgroundColor = "#169d46";
-                                };
-                                listenOnContainer.onmouseout = function () {
-                                    this.style.backgroundColor = "#1DB954";
-                                };
-                                trackName.innerHTML = res.track.name;
-                                trackName.href = res.track.url;
-                                if (res.track.context) {
-                                    trackBreak.innerHTML = "-";
-                                    trackContext.style.display = "inline";
-                                    trackBreak.style.display = "inline";
-                                    trackContext.innerHTML = res.track.context.name;
-                                    trackContext.href = res.track.context.url;
+                                deviceImg.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/phoneIcon.png";
+                            } else if (res.device.type === "Computer") {
+                                deviceImg.style.display = "inline";
+                                deviceImg.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/compIcon.png";
+                            } else{
+                                deviceImg.style.display = "none";
+                            }
+                            deviceName.textContent = res.device.name;
+                            let artists = "";
+                            for (let i = 0; i < res.track.artists.names.length; i++) {
+                                if (i === 0) {
+                                    artists = res.track.artists.names[i];
                                 } else {
-                                    trackName.style.maxWidth = "80%";
-                                    trackContext.innerHTML = "";
-                                    trackBreak.style.display = "none";
-                                    trackBreak.style.display = "none";
-                                }
-                                if (res.device.type === "Smartphone" || res.device.type === "Tablet") {
-                                    deviceImg.style.display = "inline";
-                                    deviceImg.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/phoneIcon.png";
-                                } else if (res.device.type === "Computer") {
-                                    deviceImg.style.display = "inline";
-                                    deviceImg.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/compIcon.png";
-                                } else{
-                                    deviceImg.style.display = "none";
-                                }
-                                deviceName.textContent = res.device.name;
-                                let artists = "";
-                                for (let i = 0; i < res.track.artists.names.length; i++) {
-                                    if (i === 0) {
-                                        artists = res.track.artists.names[i];
-                                    } else {
-                                        artists = artists + ", " + res.track.artists.names[i];
-                                    }
-                                }
-                                artistName.innerHTML = artists;
-                                artistName.href = res.track.artists.url;
-                                progress.style.width = String(res.player.progress * 100) + "%";
-                                trackImg.src = res.track.image;
-                                vol.style.width = String(res.player.vol) + "%";
-                                if (res.player.shuffle === true) {
-                                    shuffle.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/shuffleOn.png";
-                                } else {
-                                    shuffle.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/shuffleOff.png";
-                                }
-                                if (res.player.repeat === "off") {
-                                    repeat.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/repeatOff.png";
-                                } else {
-                                    repeat.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/repeatOn.png";
+                                    artists = artists + ", " + res.track.artists.names[i];
                                 }
                             }
-                            setTimeout(setSong, timer * 1000);
-                        });
+                            artistName.innerHTML = artists;
+                            artistName.href = res.track.artists.url;
+                            progress.style.width = String(res.player.progress * 100) + "%";
+                            trackImg.src = res.track.image;
+                            vol.style.width = String(res.player.vol) + "%";
+                            if (res.player.shuffle === true) {
+                                shuffle.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/shuffleOn.png";
+                            } else {
+                                shuffle.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/shuffleOff.png";
+                            }
+                            if (res.player.repeat === "off") {
+                                repeat.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/repeatOff.png";
+                            } else {
+                                repeat.src = "https://raw.githubusercontent.com/nickesc/My-Girlfriend-is-Curious/main/img/repeatOn.png";
+                            }
+                        }
+                        setTimeout(setSong, timer * 1000);
+                    });
             }
             setSong()
         </script>
