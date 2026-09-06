@@ -83,7 +83,7 @@ it.each([403, 429, 500])("backs off on Spotify %s without calling it on each pol
   await get(); expect(fetchMock).toHaveBeenCalledTimes(1);
 });
 
-it("notifies once on invalid_grant, and remembers the alert across eviction", async () => {
+it("respects the notification cooldown across eviction", async () => {
   await seed(true);
   fetchMock.mockImplementationOnce(() => Response.json({ error: "invalid_grant" }, { status: 400 })).mockImplementationOnce(() => new Response("ok"));
   const responses = await Promise.all([get(), get(), get()]);
@@ -212,10 +212,19 @@ it("recovers from a 401 with the refreshed access token", async () => {
 it("retries a failed IFTTT delivery only after the persisted cooldown", async () => {
   await get();
   const recovery = await state<{ nextAttemptAt: number }>("recovery");
-  expect(recovery!.nextAttemptAt).toBeGreaterThan(Date.now() + 14 * 60000);
+  expect(recovery!.nextAttemptAt).toBeGreaterThan(Date.now() + 9 * 60000);
   await put({ failure: { until: 0 }, recovery: { ...recovery, nextAttemptAt: 0 } });
   fetchMock.mockImplementationOnce(() => new Response("ok"));
   await get();
   expect(fetchMock).toHaveBeenCalledTimes(2);
-  expect((await state<{ sent: boolean }>("recovery"))?.sent).toBe(true);
+});
+
+it("sends another IFTTT notification after a successful delivery cooldown", async () => {
+  fetchMock.mockImplementation(() => new Response("ok"));
+  await get();
+  const recovery = await state<{ nextAttemptAt: number }>("recovery");
+  expect(recovery!.nextAttemptAt).toBeGreaterThan(Date.now() + 9 * 60000);
+  await put({ failure: { until: 0 }, recovery: { ...recovery, nextAttemptAt: 0 } });
+  await get();
+  expect(fetchMock).toHaveBeenCalledTimes(2);
 });

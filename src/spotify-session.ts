@@ -4,9 +4,10 @@ import { transform, type Playback, type Current } from "./transform";
 
 const CACHE_MS = 10_000;
 const LINK_MS = 24 * 60 * 60 * 1000;
+const NOTIFICATION_COOLDOWN_MS = 10 * 60 * 1000;
 const COOKIE = "__Host-mgic-oauth";
 type Tokens = { access: string; refresh: string; expiresAt: number };
-type Recovery = { ticket: string; expiresAt: number; nextAttemptAt: number; sent: boolean };
+type Recovery = { ticket: string; expiresAt: number; nextAttemptAt: number };
 type Login = { state: string; browser: string; expiresAt: number };
 type Snapshot = { value: Current; at: number };
 type Failure = { error: string; status: number; until: number };
@@ -94,24 +95,20 @@ export class SpotifySession extends DurableObject<Bindings> {
     let recovery = await this.ctx.storage.get<Recovery>("recovery");
     const now = Date.now();
     if (!recovery || recovery.expiresAt <= now) {
-      recovery = { ticket: random(), expiresAt: now + LINK_MS, nextAttemptAt: 0, sent: false };
+      recovery = { ticket: random(), expiresAt: now + LINK_MS, nextAttemptAt: 0 };
     }
-    if (recovery.sent || recovery.nextAttemptAt > now) return;
+    if (recovery.nextAttemptAt > now) return;
     // Persist before sending: a crash or ambiguous response must not cause
     // every widget request to send another notification.
-    recovery.nextAttemptAt = now + 15 * 60_000;
+    recovery.nextAttemptAt = now + NOTIFICATION_COOLDOWN_MS;
     await this.ctx.storage.put("recovery", recovery);
     try {
       const link = new URL("/login", this.env.PUBLIC_BASE_URL);
       link.searchParams.set("ticket", recovery.ticket);
-      const response = await this.network(`https://maker.ifttt.com/trigger/${encodeURIComponent(this.env.IFTTT_EVENT)}/with/key/${encodeURIComponent(this.env.IFTTT_KEY)}`, {
+      await this.network(`https://maker.ifttt.com/trigger/${encodeURIComponent(this.env.IFTTT_EVENT)}/with/key/${encodeURIComponent(this.env.IFTTT_KEY)}`, {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ value1: link.href, value2: "Spotify needs reauthorization. This link expires in 24 hours." })
       });
-      if (response.ok) {
-        recovery.sent = true;
-        await this.ctx.storage.put("recovery", recovery);
-      }
     } catch { /* Retry only on a later request after the persisted cooldown. */ }
   }
 
