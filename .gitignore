@@ -1,14 +1,12 @@
-
-.idea/
-
 node_modules/
 
 .DS_Store
 
-spotify-icons-logos/
 .wrangler/
 .dev.vars*
 .env*
 !.dev.vars.example
 coverage/
+
+*.ai
 ~ai-*.tmp
