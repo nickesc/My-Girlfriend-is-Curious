@@ -1,0 +1,31 @@
+{
+  "name": "my-girlfriend-is-curious",
+  "version": "3.0.0",
+  "description": "A Spotify status API with a Cloudflare Workers backend",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "vitest run",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "types": "wrangler types",
+    "check": "tsc --noEmit",
+    "build": "wrangler deploy --dry-run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickesc/My-Girlfriend-is-Curious.git"
+  },
+  "author": "N. Escobar/nickesc <nickesc.media@gmail.com> (https://nickesc.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nickesc/My-Girlfriend-is-Curious/issues"
+  },
+  "homepage": "https://github.com/nickesc/My-Girlfriend-is-Curious#readme",
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "^1.1.4",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11",
+    "wrangler": "^4.129.0"
+  }
+}
