@@ -17,12 +17,7 @@
       "url": "https://open.spotify.com/album/55UhXq8grzHPga0we8mEL3"
     },
     "artists": {
-      "names": [
-        "Drake",
-        "Kanye West",
-        "Lil Wayne",
-        "Eminem"
-      ],
+      "names": ["Drake", "Kanye West", "Lil Wayne", "Eminem"],
       "url": "https://open.spotify.com/artist/3TVXtAsR1Inumwj472S9r4"
     },
     "contentType": "track",
