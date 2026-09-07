@@ -12,7 +12,8 @@
 
     <body style="overflow-x: hidden; margin: 0">
 
-        <spotify data-endpoint="https://mgic.nickesc.workers.dev/current" style="position: fixed;">
+        <spotify-widget data-endpoint="https://mgic.nickesc.workers.dev/current"
+                        style="position: fixed;">
             <a href="#" class="expand"
                style="position:absolute; bottom: 0; right: max(1vw,15px); min-width: 50px; max-width:80px; width: 10vmin;"
                onclick="document.getElementsByClassName('spotifyPlayer')[0].style.display='flex'"><img
@@ -311,7 +312,6 @@
                     updatePolling();
                 </script>
             </div>
-        </spotify>
-
+        </spotify-widget>
     </body>
 </html>
