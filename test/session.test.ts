@@ -48,7 +48,7 @@ it("restricts CORS without requiring browser visibility headers", async () => {
 
 it("refreshes and fetches once for concurrent consumers, then survives eviction", async () => {
   await seed(true);
-  fetchMock.mockImplementation(async (url) => String(url).includes("/api/token")
+  fetchMock.mockImplementation(async (url: RequestInfo | URL) => String(url).includes("/api/token")
     ? Response.json({ access_token: "new-access", refresh_token: "rotated", expires_in: 3600 })
     : Response.json(track));
   const responses = await Promise.all(Array.from({ length: 8 }, () => get()));
@@ -162,7 +162,7 @@ it("does not make optional playlist metadata a playback dependency", async () =>
 
 it("caches playlist metadata across playback updates", async () => {
   await seed();
-  fetchMock.mockImplementation(async url => String(url).includes("/playlists/")
+  fetchMock.mockImplementation(async (url: RequestInfo | URL) => String(url).includes("/playlists/")
     ? Response.json({ name: "Playlist", type: "playlist", external_urls: { spotify: "https://open.spotify.com/playlist/abc" } })
     : Response.json({ ...track, context: { uri: "spotify:playlist:abc" } }));
   const value = await (await get()).json();
@@ -201,8 +201,8 @@ it("recovers from a 401 with the refreshed access token", async () => {
   await seed();
   fetchMock.mockImplementationOnce(() => new Response(null, { status: 401 }))
     .mockImplementationOnce(() => Response.json({ access_token: "new", expires_in: 3600 }))
-    .mockImplementationOnce((_, options) => {
-      expect(new Headers(options.headers).get("Authorization")).toBe("Bearer new");
+    .mockImplementationOnce((_: RequestInfo | URL, options?: RequestInit) => {
+      expect(new Headers(options?.headers).get("Authorization")).toBe("Bearer new");
       return Response.json(track);
     });
   expect((await get()).status).toBe(200);
