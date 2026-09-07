@@ -10,9 +10,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
+    <style>
+        html {
+            background-color: #333;
+        }
+    </style>
+
     <body style="overflow-x: hidden; margin: 0">
 
-        <spotify-widget data-endpoint="https://mgic.nickesc.workers.dev/current"
+        <spotify-widget data-endpoint="https://mgic.batcomputer.xyz/current"
                         style="position: fixed;">
             <a href="#" class="expand"
                style="position:absolute; bottom: 0; right: max(1vw,15px); min-width: 50px; max-width:80px; width: 10vmin;"
@@ -20,7 +26,7 @@
                      src="./assets/expand.png" alt="Expand Spotify"
                      style="color: #B3B3B3; max-height: 80px"></a>
             <div class="spotifyPlayer"
-                 style="position: relative; display: none; flex-direction: row; width: 100vw; max-width: 700px; min-width: 320px; font-family: 'Helvetica Neue', sans-serif; background-color: #191414;text-overflow: ellipsis;white-space: nowrap;overflow: hidden; ">
+                 style="position: relative; display: flex; flex-direction: row; width: 100vw; max-width: 700px; min-width: 320px; font-family: 'Helvetica Neue', sans-serif; background-color: #191414;text-overflow: ellipsis;white-space: nowrap;overflow: hidden; ">
                 <a href="https://open.spotify.com/user/goofyshnoofy"
                    style="color: white; font-weight: bold; text-decoration: none">
                     <div class="spotifyStatusIndicator"
@@ -35,8 +41,8 @@
                          src="./assets/collapse.png" alt="Collapse Spotify"
                          style="color: #B3B3B3; width: 100%"></a>
                 <div class="playerImgContainer" style="height: 130px;">
-                    <img class="trackImg" src="./assets/missingAlbum.png" alt="albumArt"
-                         style="height:130px;object-fit: cover">
+                    <img class="trackImg" src="https://mgic.batcomputer.xyz/missingAlbum.svg"
+                         alt="albumArt" style="height:130px;object-fit: cover">
                 </div>
                 <div class='playerControlsContainer'
                      style=" display: flex; flex-direction: column; width: 100%">
@@ -98,7 +104,7 @@
                 <script>
                     const timer = 10;
                     const mediaQuery = window.matchMedia('(min-width: 760px)');
-                    let spotify = document.getElementsByTagName("spotify")[0];
+                    let spotify = document.getElementsByTagName("spotify-widget")[0];
                     let trackImg = document.getElementsByClassName("trackImg")[0];
                     let trackImgContainer = document.getElementsByClassName("playerImgContainer")[0];
                     let listenOnContainer = document.getElementsByClassName("onSpotifyContainer")[0];
@@ -231,7 +237,7 @@
                             listenOnContainer.onmouseout = function () {
                                 this.style.backgroundColor = "#191414";
                             };
-                            trackImg.src = "./assets/missingAlbum.png";
+                            trackImg.src = "https://mgic.batcomputer.xyz/missingAlbum.svg";
                         } else {
                             artistName.style.display = "inline";
                             deviceName.style.display = "inline";
