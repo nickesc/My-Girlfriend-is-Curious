@@ -31,7 +31,7 @@ export function transform(playback: Playback | null, context: Entity | null | un
     const item = playback?.item;
     const supported = item?.type === "track" || item?.type === "episode";
     if (!playback?.is_playing || !item || !supported || playback.device?.is_private_session) {
-    return { playing: false, device: {}, player: {}, track: { context: null, artists: { names: [] } } };
+        return {playing: false};
     }
     const episode = item.type === "episode";
     const group = episode ? item.show : item.album;
