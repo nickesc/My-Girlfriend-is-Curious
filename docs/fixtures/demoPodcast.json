@@ -8,7 +8,7 @@
     "vol": 100,
     "shuffle": false,
     "repeat": "off",
-    "progress": 0.28535169024850154
+    "progress": 414000
   },
   "track": {
     "context": {
@@ -24,6 +24,7 @@
     "name": "1 - Pilot",
     "image": "https://i.scdn.co/image/b9e486b756ad8a7027bdb304ad24fdfa7de28fea",
     "explicit": false,
-    "url": "https://open.spotify.com/episode/6zs79bz9Nb0lXhoHtGDudJ"
+    "url": "https://open.spotify.com/episode/6zs79bz9Nb0lXhoHtGDudJ",
+    "duration": 1452000
   }
 }

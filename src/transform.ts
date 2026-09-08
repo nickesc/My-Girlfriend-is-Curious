@@ -41,6 +41,8 @@ export function transform(playback: Playback | null, context: Entity | null | un
     const contextEntity = context === undefined ? group : context;
     const image = (episode ? item.images : item.album?.images)?.find((i) => i.url?.startsWith("https://"))?.url;
     const deviceType = playback.device?.type || "";
+    const duration = item.duration_ms && item.duration_ms > 0 ? item.duration_ms : 0;
+    const elapsed = Math.max(0, playback.progress_ms ?? 0);
     return {
         playing: true,
         device: {
@@ -51,10 +53,7 @@ export function transform(playback: Playback | null, context: Entity | null | un
             vol: Math.max(0, Math.min(100, playback.device?.volume_percent ?? 0)),
             shuffle: playback.shuffle_state ?? false,
             repeat: playback.repeat_state || "off",
-            progress:
-                item.duration_ms && item.duration_ms > 0
-                    ? Math.max(0, Math.min(1, (playback.progress_ms ?? 0) / item.duration_ms))
-                    : 0,
+            progress: duration > 0 ? Math.min(elapsed, duration) : elapsed,
         },
         track: {
             context: contextEntity?.name
@@ -75,6 +74,7 @@ export function transform(playback: Playback | null, context: Entity | null | un
             image: image || missingAlbumUrl,
             explicit: item.explicit ?? false,
             url: spotifyUrl(item.external_urls?.spotify),
+            duration,
         },
     };
 }

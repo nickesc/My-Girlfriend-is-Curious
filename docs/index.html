@@ -298,7 +298,8 @@
                             }
                             artistName.textContent = artists;
                             setSpotifyLink(artistName, res.track.artists.url);
-                            progress.style.width = String(res.player.progress * 100) + "%";
+                            progress.style.width =
+                                String((res.track.duration ? res.player.progress / res.track.duration : 0) * 100) + "%";
                             trackImg.src = res.track.image;
                             vol.style.width = String(res.player.vol) + "%";
                             if (res.player.shuffle === true) {

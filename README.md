@@ -156,7 +156,7 @@ if (playback.playing) {
     "vol": 42,
     "shuffle": false,
     "repeat": "off",
-    "progress": 0.36
+    "progress": 36000
   },
   "track": {
     "context": {
@@ -172,12 +172,13 @@ if (playback.playing) {
     "name": "Example Track",
     "image": "https://i.scdn.co/image/...",
     "explicit": false,
-    "url": "https://open.spotify.com/track/..."
+    "url": "https://open.spotify.com/track/...",
+    "duration": 100000
   }
 }
 ```
 
-- `player.progress` ranges from `0` to `1`
+- `player.progress` and `track.duration` are milliseconds
 - `contentType` is `track` or `episode`
 - Context can be an album, show, playlist, artist, or `null`
 

@@ -8,7 +8,7 @@
     "vol": 100,
     "shuffle": false,
     "repeat": "off",
-    "progress": 0.021547743643415624
+    "progress": 7700
   },
   "track": {
     "context": {
@@ -24,6 +24,7 @@
     "name": "Forever",
     "image": "https://i.scdn.co/image/ab67616d0000b2737c22c8b9a5cfe27cd9914c4c",
     "explicit": true,
-    "url": "https://open.spotify.com/track/6HSqyfGnsHYw9MmIpa9zlZ"
+    "url": "https://open.spotify.com/track/6HSqyfGnsHYw9MmIpa9zlZ",
+    "duration": 357000
   }
 }

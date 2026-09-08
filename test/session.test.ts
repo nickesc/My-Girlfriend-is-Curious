@@ -172,8 +172,8 @@ it("does not spam IFTTT after an ambiguous delivery failure", async () => {
 it("maps tracks, podcasts without publisher, private sessions and unknown items safely", () => {
     expect(transform(track, undefined, missingAlbumUrl)).toMatchObject({
         playing: true,
-        player: {progress: 0.5},
-        track: {name: "Track"},
+        player: {progress: 500},
+        track: {name: "Track", duration: 1000},
         device: {type: "Computer"},
     });
     expect(
@@ -185,6 +185,13 @@ it("maps tracks, podcasts without publisher, private sessions and unknown items 
     ).toMatchObject({track: {artists: {names: ["Show"]}, context: {name: "Show"}, image: missingAlbumUrl}});
     expect(transform({...track, device: {is_private_session: true}}, undefined, missingAlbumUrl).playing).toBe(false);
     expect(transform({is_playing: true, item: {type: "ad"}}, undefined, missingAlbumUrl).playing).toBe(false);
+    expect(transform({...track, progress_ms: 5000}, undefined, missingAlbumUrl)).toMatchObject({
+        player: {progress: 1000},
+        track: {duration: 1000},
+    });
+    expect(
+        transform({...track, item: {...track.item, duration_ms: undefined}}, undefined, missingAlbumUrl),
+    ).toMatchObject({player: {progress: 500}, track: {duration: 0}});
     expect(transform(null, undefined, missingAlbumUrl).playing).toBe(false);
 });
 
